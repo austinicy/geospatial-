@@ -20,7 +20,4 @@ shinyServer(function(input, output) {
     hist(x, breaks = bins, col = 'darkgray', border = 'white')
 
   })
-  
-  roads <- readOGR("C:\Users\Joanne Tan\Dropbox\Year 4\IS415 Geospatial Analysis for Business Intelligence\FinalProject\www", "roads_clipped")
-
 })
