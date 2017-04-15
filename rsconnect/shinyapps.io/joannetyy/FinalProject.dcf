@@ -1,0 +1,11 @@
+name: FinalProject
+title: FinalProject
+account: joannetyy
+server: shinyapps.io
+appId: 170731
+bundleId: 782604
+url: https://joannetyy.shinyapps.io/FinalProject/
+when: 1491761743.98574
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: .gitattributes|.RData|debug.log|FileUpload.R|TestScript.R|www/roads_clipped.dbf|www/roads_clipped.prj|www/roads_clipped.qpj|www/roads_clipped.shp|www/roads_clipped.shx|www/default/Geocoded_PrivateHousing.csv|www/default/Geocoded_PublicHousing.csv|www/Shapefiles/Private Housing.dbf|www/Shapefiles/Private Housing.prj|www/Shapefiles/Private Housing.qpj|www/Shapefiles/Private Housing.shp|www/Shapefiles/Private Housing.shx|www/Shapefiles/Public Housing.dbf|www/Shapefiles/Public Housing.prj|www/Shapefiles/Public Housing.qpj|www/Shapefiles/Public Housing.shp|www/Shapefiles/Public Housing.shx|www/Shapefiles/Singpost Outlets.dbf|www/Shapefiles/Singpost Outlets.prj|www/Shapefiles/Singpost Outlets.qpj|www/Shapefiles/Singpost Outlets.shp|www/Shapefiles/Singpost Outlets.shx

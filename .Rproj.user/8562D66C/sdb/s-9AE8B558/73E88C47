@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "#\n# This is a Shiny web application. You can run the application by clicking\n# the 'Run App' button above.\n#\n# Find out more about building applications with Shiny here:\n#\n#    http://shiny.rstudio.com/\n#\n\nlibrary(shiny)\nlibrary(leaflet)\nlibrary(rgdal)\nlibrary(readr)\nlibrary(spatstat)\n\nr_colors <- rgb(t(col2rgb(colors()) / 255))\nnames(r_colors) <- colors()\n\nui <- fluidPage(\n  titlePanel(\"Accessibility Visualisation Tool by Acces(S)ingapore\"),\n  \n  # Sidebar with a slider input for number of bins\n  sidebarLayout(\n    sidebarPanel(\n      checkboxGroupInput(\"layers\",\n                         \"Toggle layers to be displayed:\",\n                         c(\"Kernel Density\" = \"kde\",\n                           \"Buffer Analysis\" = \"buffer\")),\n      fileInput('userfiles',\n                'Select .csv file to upload for analysis:'),\n      selectInput('origin', \n                  'Select origin locations:', \n                  c(Choose='','SingPost Offices',list.files(pattern=\"user_\")),\n                  selectize=FALSE),\n      selectInput('dest', \n                  'Select destination locations:', \n                  c(Choose='','SingPost Offices','SCDF Ambulances'),\n                  selectize=FALSE),\n      sliderInput(\"bins\",\n                  \"Number of bins:\",\n                  min = 1,\n                  max = 50,\n                  value = 30),\n      sliderInput(\"dist\",\n                  \"Distance to judge accessibility (m):\",\n                  min = 100,\n                  max = 2000,\n                  value = 500,\n                  step = 25)\n    ),\n    \n    # Show a plot of the generated distribution\n    mainPanel(\n      leafletOutput(\"mymap\"),\n      p(),\n      h4('List of uploaded files:')\n      ,verbatimTextOutput('fileList')\n    )\n  )\n)\n\nserver <- function(input, output, session) {\n  \n  # loads SingPost locations into spatial points data frame\n  SingPost <- read_csv(\"www/default/Singpost_Locations.csv\")\n  coordinates(SingPost) <- c(\"X-COORDINATES\",\"Y-COORDINATES\")\n  proj4string(SingPost) <- CRS(\"+init=epsg:3414\")\n  longlat.df <- as.data.frame(spTransform(SingPost,CRS(\"+proj=longlat\")))\n  SingPost$LONGITUDE <- longlat.df$X.COORDINATES\n  SingPost$LATITUDE <- longlat.df$Y.COORDINATES\n  \n  SingPost.df <- as.data.frame(SingPost)\n  \n  output$mymap <- renderLeaflet({\n    leaflet(SingPost.df) %>% addTiles() %>%\n      setView(103.8509, 1.2800, zoom = 10) %>%\n      addMarkers()\n  })\n  \n  # update file list\n  observeEvent(input$userfiles, {  \n    if (is.null(input$userfiles) ) {    return(NULL)  }  \n    file.copy(from = input$userfiles$datapath, to =  paste0('user_',input$userfiles$name )  ) \n    isolate(updateSelectInput(session,\"origin\",choices = c('SingPost Offices', list.files(pattern='user_'))))\n    isolate(updateSelectInput(session,\"dest\",choices = c('SingPost Offices', list.files(pattern='user_'))))\n  })\n  \n  observeEvent(input$origin, {\n    if (is.null(input$userfiles) ) {    return(NULL)  }\n    \n  })\n  \n  output$fileList <- renderText({   \n    input$userfiles\n    dir(pattern = 'user_') \n  })\n}\n\nshinyApp(ui, server)",
+    "created" : 1491669345014.000,
+    "dirty" : true,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1540540063",
+    "id" : "73E88C47",
+    "lastKnownWriteTime" : 1491707017,
+    "last_content_update" : 1491708817736,
+    "path" : "D:/Dropbox/FinalProject/app.R",
+    "project_path" : "app.R",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

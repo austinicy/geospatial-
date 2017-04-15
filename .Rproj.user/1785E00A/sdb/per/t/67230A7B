@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1491952892885.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "67230A7B",
+    "lastKnownWriteTime" : 6639187797483725427,
+    "last_content_update" : 1491952892885,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "82CD4691",
+        "caption" : "SingPost.df",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=SingPost.df&cache_key=82CD4691",
+        "displayedObservations" : 57,
+        "environment" : "",
+        "object" : "SingPost.df",
+        "preview" : 0,
+        "totalObservations" : 57,
+        "variables" : 9
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}
